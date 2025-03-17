@@ -32,21 +32,18 @@ public class TaskSchedulerDbContext(DbContextOptions<TaskSchedulerDbContext> opt
             .HasForeignKey(et => et.TaskId)
             .OnDelete(DeleteBehavior.Cascade);
 
-        // Department - Employee (One-to-Many)
         modelBuilder.Entity<Employee>()
             .HasOne(e => e.Department)
             .WithMany(d => d.Employees)
             .HasForeignKey(e => e.DepartmentId)
             .OnDelete(DeleteBehavior.Cascade);
 
-        // Department - SOP (One-to-Many)
         modelBuilder.Entity<Sop>()
             .HasOne(s => s.Department)
             .WithMany(d => d.Sops)
             .HasForeignKey(s => s.DepartmentId)
             .OnDelete(DeleteBehavior.Cascade); 
 
-        // SOP - Task (One-to-Many)
         modelBuilder.Entity<Task>()
             .HasOne(t => t.Sop)
             .WithMany(s => s.Tasks)
