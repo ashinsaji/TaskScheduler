@@ -49,5 +49,7 @@ public class TaskSchedulerDbContext(DbContextOptions<TaskSchedulerDbContext> opt
             .WithMany(s => s.Tasks)
             .HasForeignKey(t => t.SopId)
             .OnDelete(DeleteBehavior.Cascade);
+        
+        base.OnModelCreating(modelBuilder);
     }
 }
